@@ -1,4 +1,5 @@
 # Prohlizec-Databaze-2-IP
+Jednoduchý prohlížeč databáze místností a zaměstnanců. Vyžaduje přihlášení a uživatelům s oprávněním umožní editaci všech dat. Vytvořeno za výukovými účely při předmětu Internetové prezentace na škole DELTA.
 
 ## Inicializace projektu
 
