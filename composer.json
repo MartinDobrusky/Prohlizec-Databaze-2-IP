@@ -1,0 +1,8 @@
+{
+    "require": {
+        "tracy/tracy": "^2.9",
+        "mustache/mustache": "^2.14",
+        "ext-pdo": "*",
+        "ext-mbstring": "*",
+    }
+}

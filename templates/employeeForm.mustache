@@ -1,0 +1,44 @@
+<form method="post">
+    <div class="my-2">
+        <label for="name">Name</label>
+        <input id="name" name="name" class="form-control" type="text" value="{{employee.name}}" required/>
+        {{#errors.name}}<div class="form-text text-warning">{{errors.name}}</div>{{/errors.name}}
+    </div>
+    <div class="my-2">
+        <label for="surname">Surname</label>
+        <input id="surname" name="surname" class="form-control" type="text" value="{{employee.surname}}" required/>
+        {{#errors.no}}<div class="form-text text-warning">{{errors.no}}</div>{{/errors.no}}
+    </div>
+    <div class="my-2">
+        <label for="job">Job</label>
+        <input id="job" name="job" class="form-control" type="text" value="{{employee.job}}"/>
+    </div>
+    <div class="my-2">
+        <label for="wage">Wage</label>
+        <input id="wage" name="wage" class="form-control" type="text" value="{{employee.wage}}" required/>
+        {{#errors.no}}<div class="form-text text-warning">{{errors.no}}</div>{{/errors.no}}
+    </div>
+
+    <label for="room">Choose a room:</label>
+    <select class="form-select" name="room" id="room">
+        {{#roomsForSelect}}
+        <option value="{{ room_id }}">{{ name }}</option>
+        {{/roomsForSelect}}
+    </select><br>
+
+    <label>Choose keys:</label><br><br>
+    {{#keysForSelect}}
+    <input class="form-check-input" type="checkbox" id="key" name="keys[]" value="{{ room_id }}.">
+    <label for="key"> {{ name }}</label><br>
+    {{/keysForSelect}}
+    <br>
+
+    <div class="my-2">
+        {{#create}}<input type="hidden" name="action" value="create" />
+        <input type="submit" value="Create" class="btn btn-primary" />{{/create}}
+        {{#update}}<input type="hidden" name="action" value="update" />
+        <input type="hidden" name="employee_id" value="{{employee.employee_id}}">
+        <input type="submit" value="Update" class="btn btn-primary" />{{/update}}
+    </div>
+</form>
+<form action="../employee/index.php"><input type="submit" value="Zpět na seznam zaměstnanců" class="btn btn-primary" /></form>

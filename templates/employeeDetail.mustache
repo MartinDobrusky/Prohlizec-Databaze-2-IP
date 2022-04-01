@@ -1,0 +1,42 @@
+<table class="table table-hover table-sm">
+    {{# employee }}
+    <thead>
+        <th>
+            <h1>{{ name }} {{ surname }}</h1>
+        </th>
+    </thead>
+    <tbody>
+    <tr>
+        <th>Name</th>
+        <td>{{ name }}</td>
+    </tr>
+    <tr>
+        <th>Surname</th>
+        <td>{{ surname }}</td>
+    </tr>
+    <tr>
+        <th>Job</th>
+        <td>{{ job }}</td>
+    </tr>
+    <tr>
+        <th>Wage</th>
+        <td>{{ wage }}</td>
+    </tr>
+    {{/employee}}
+    <tr>
+        <th>Room</th>
+        <td>{{# room }} <a href="../room/roomDetail.php?room_id={{room_id}}">{{ name }}</a> {{/room}}</td>
+    </tr>
+    <tr>
+        <th>Keys</th>
+        <td>{{#keys }} <a href="../room/roomDetail.php?room_id={{room_id}}">{{ . }}</a><br> {{/keys}}</td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr><td>
+        <form action="../employee/index.php" method="post">
+            <input type="submit" value="Zpět na list zaměstnanců" class="btn btn-primary">
+        </form>
+    </td><td> </td></tr>
+    </tfoot>
+</table>

@@ -1,0 +1,15 @@
+<form class="w-25 text-center m-auto align-self-center" method="post">
+    <div class="my-2">
+        <label for="name">Přihlašovací jméno</label>
+        <input id="name" name="name" class="form-control" type="text" value="{{room.name}}" required/>
+        {{#errors.name}}<div class="form-text text-warning">{{errors.name}}</div>{{/errors.name}}
+    </div>
+    <div class="my-2">
+        <label for="password">Heslo</label>
+        <input id="password" name="password" class="form-control" type="password" value="{{room.no}}" required/>
+        {{#errors.no}}<div class="form-text text-warning">{{errors.no}}</div>{{/errors.no}}
+    </div>
+    <form method="post">
+        <input type="submit" name="submit" value="Přihlásit se" class="btn btn-primary">
+    </form>
+</form>

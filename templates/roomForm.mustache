@@ -1,0 +1,25 @@
+<form method="post">
+    <div class="my-2">
+        <label for="name">Room name</label>
+        <input id="name" name="name" class="form-control" type="text" value="{{room.name}}" required/><!--mělo by být required-->
+        {{#errors.name}}<div class="form-text text-warning">{{errors.name}}</div>{{/errors.name}}
+    </div>
+    <div class="my-2">
+        <label for="no">No.</label>
+        <input id="no" name="no" class="form-control" type="number" value="{{room.no}}" required/><!--mělo by být required-->
+        {{#errors.no}}<div class="form-text text-warning">{{errors.no}}</div>{{/errors.no}}
+    </div>
+    <div class="my-2">
+        <label for="phone">Phone</label>
+        <input id="phone" name="phone" class="form-control" type="number" value="{{room.phone}}"/>
+    </div>
+
+    <div class="my-2">
+        {{#create}}<input type="hidden" name="action" value="create" />
+        <input type="submit" value="Create" class="btn btn-primary" />{{/create}}
+        {{#update}}<input type="hidden" name="action" value="update" />
+        <input type="hidden" name="room_id" value="{{room.room_id}}">
+        <input type="submit" value="Update" class="btn btn-primary" />{{/update}}
+    </div>
+</form>
+<form action="../room/index.php"><input type="submit" value="Back to rooms" class="btn btn-primary" /></form>

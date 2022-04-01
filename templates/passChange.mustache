@@ -1,0 +1,23 @@
+<form class="w-25 text-center m-auto align-self-center" method="post">
+    <div class="my-2">
+        <label for="name">Přihlašovací jméno</label>
+        <input id="name" name="name" class="form-control" type="text" required/>
+        {{#errors.name}}<div class="form-text text-warning">{{errors.name}}</div>{{/errors.name}}
+    </div>
+    <div class="my-2">
+        <label for="oldPassword">Původní heslo</label>
+        <input id="oldPassword" name="oldPassword" class="form-control" type="password" required/>
+        {{#errors.no}}<div class="form-text text-warning">{{errors.no}}</div>{{/errors.no}}
+    </div>
+    <div class="my-2">
+        <label for="password">Nové heslo</label>
+        <input id="password" name="password" class="form-control" type="password" required/>
+        {{#errors.no}}<div class="form-text text-warning">{{errors.no}}</div>{{/errors.no}}
+    </div>
+    <form method="post">
+        <input type="submit" name="submit" value="Change Password" class="btn btn-primary">
+    </form>
+    <form action="../index.php" method="post">
+        <input type="submit" value="Back" class="btn btn-primary">
+    </form>
+</form>

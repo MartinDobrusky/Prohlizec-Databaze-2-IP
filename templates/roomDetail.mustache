@@ -1,0 +1,42 @@
+<table class="table table-hover table-sm">
+    {{# room }}
+    <thead>
+        <th>
+            <h1>{{ name }} </h1>
+        </th>
+    </thead>
+    <tbody>
+    <tr>
+        <th>Name</th>
+        <td>{{ name }}</td>
+    </tr>
+    <tr>
+        <th>No.</th>
+        <td>{{ no }}</td>
+    </tr>
+    <tr>
+        <th>Phone</th>
+        <td>{{ phone }}</td>
+    </tr>
+    <tr>
+        <th>Workers</th>
+        <td>{{# employee }} <a href="../employee/employeeDetail.php?employee_id={{employee_id}}">{{ name }} {{ surname }}</a><br> {{/employee}}</td>
+    </tr>
+    <tr>
+        <th>Avg salary</th>
+        <td>{{ salary }}</td>
+    </tr>
+    <tr>
+        <th>Keys</th>
+        <td>{{# key }} <a href="../employee/employeeDetail.php?employee_id={{employee_id}}">{{ name }} {{ surname }}</a><br> {{/key}}</td>
+    </tr>
+    </tbody>
+    {{/room}}
+    <tfoot>
+    <tr><td>
+        <form action="../room/index.php" method="post">
+            <input type="submit" value="Back to room list" class="btn btn-primary">
+        </form>
+    </td><td> </td></tr>
+    </tfoot>
+</table>

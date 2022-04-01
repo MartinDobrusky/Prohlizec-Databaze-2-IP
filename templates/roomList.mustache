@@ -1,0 +1,38 @@
+<h2>Seznam místností</h2>
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>No.</th>
+        <th>Phone</th>
+        {{# admin }}
+        <th>Actions</th>
+        {{/admin}}
+    </tr>
+    </thead>
+    <tbody>
+    {{# rooms }}
+        <tr>
+            <td><a href="{{ roomDetailName }}?room_id={{ room_id }}">{{ name }}</a></td>
+            <td>{{ no }}</td>
+            <td>{{ phone }}</td>
+            {{# admin }}
+            <td><form action="delete.php" method="post" onsubmit="return confirm('Do you really want to delete this room?\nThis action cannot be undone!');" style="display: inline-block;">
+                <input type="hidden" name="room_id" value="{{ room_id }}" />
+                <input type="submit" value="Delete" class="btn btn-danger">
+            </form>
+            <a href="update.php?room_id={{ room_id }}" class="btn btn-info">Edit</a></td>
+            {{/admin}}
+        </tr>
+    {{/rooms}}
+    </tbody>
+    <tfoot>
+    {{# admin }}
+        <tr><td>    <form action="../room/create.php" method="post">
+            <input type="submit" value="Create" class="btn btn-primary">
+        </form></td>{{/admin}}<td></td><td></td>
+        <td style="text-align: right; padding-right: 50px">    <form action="../index.php" method="post">
+            <input type="submit" value="Zpět na výběr" class="btn btn-primary">
+        </form></td></tr>
+    </tfoot>
+</table>

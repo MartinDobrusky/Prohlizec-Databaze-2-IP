@@ -1,0 +1,40 @@
+<h2>Seznam zaměstnanců</h2>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Job</th>
+        <th>Room</th>
+        <th>Phone</th>
+        {{# isAdmin }}
+        <th>Actions</th>
+        {{/isAdmin}}
+    </tr>
+    </thead>
+    <tbody>
+    {{# rooms }}
+    <tr>
+        <td><a href="{{ employeeDetailName }}?employee_id={{ employee_id }}">{{ empName }} {{ surname }}</a></td>
+        <td>{{ job }}</td>
+        <td>{{ name }}</td>
+        <td>{{ phone }}</td>
+        {{# isAdmin }}
+        <td><form action="delete.php" method="post" onsubmit="return confirm('Do you really want to delete this employee?\nThis action cannot be undone!');" style="display: inline-block;">
+            <input type="hidden" name="employee_id" value="{{ employee_id }}" />
+            <input type="submit" value="Delete" class="btn btn-danger">
+        </form>
+            <a href="update.php?employee_id={{ employee_id }}" class="btn btn-info">Edit</a></td>
+        {{/isAdmin}}
+    </tr>
+    {{/rooms}}
+    </tbody>
+    <tfoot>
+    {{# isAdmin }}
+    <tr><td>    <form action="../employee/create.php" method="post">
+        <input type="submit" value="Create" class="btn btn-primary">
+    </form></td>{{/isAdmin}}<td></td><td></td><td></td>
+        <td style="text-align: right; padding-right: 50px">    <form action="../index.php" method="post">
+            <input type="submit" value="Zpět na výběr" class="btn btn-primary">
+        </form></td></tr>
+    </tfoot>
+</table>
