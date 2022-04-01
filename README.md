@@ -1,10 +1,10 @@
 # Prohlizec-Databaze-2-IP
 
-##Inicializace projektu
+## Inicializace projektu
 
-###Databáze
+### Databáze
 - Přejmenovat soubor LocalConfig.skeleton.class.php na LocalConfig.class.php
 - Vyplnit údaje k připojení v LocalConfig.class.php
 
-###Composer
+### Composer
 - V konzoli spustit *composer update*
