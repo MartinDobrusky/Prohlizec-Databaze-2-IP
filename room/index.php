@@ -8,6 +8,7 @@ final class Page extends BaseDBPage{
     {
         parent::__construct();
         $this->title = "Room listing";
+        $this->loggedUser = $_SESSION["userName"];
     }
 
     protected function body(): string

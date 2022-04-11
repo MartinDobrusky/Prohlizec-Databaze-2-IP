@@ -4,6 +4,7 @@ abstract class BasePage
 {
     protected MustacheRunner $m;
     public string $title;
+    public ?string $loggedUser;
 
     public function __construct()
     {
@@ -39,7 +40,7 @@ abstract class BasePage
 
     protected function header() : string
     {
-        return $this->m->render("head", ["title" => $this->title]);
+        return $this->m->render("head", ["title" => $this->title, "loggedUser" => $this->loggedUser]);
     }
 
     abstract protected function body() : string;

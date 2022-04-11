@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once "../_includes/bootstrap.inc.php";
 
 final class DeleteEmployee extends BaseDBPage{
@@ -17,6 +17,7 @@ final class DeleteEmployee extends BaseDBPage{
     {
         parent::__construct();
         $this->title = "Employee delete";
+        $this->loggedUser = $_SESSION["userName"];
     }
 
     protected function setUp(): void
@@ -55,7 +56,7 @@ final class DeleteEmployee extends BaseDBPage{
             if ($this->result === self::RESULT_SUCCESS) {
                 return $this->m->render("empReportSuccess", ["data"=>"Employee deleted successfully"]);
             } else {
-                return $this->m->render("empReportFail", ["data"=>"Employee deletion failed. Please contact adiministrator or try again later."]);
+                return $this->m->render("empReportFail", ["data"=>"Employee deletion failed. If problem persists contact administrator or try again later."]);
             }
         }
         return "";

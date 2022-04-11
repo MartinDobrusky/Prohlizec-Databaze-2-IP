@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once "../_includes/bootstrap.inc.php";
 
 final class DeleteRoom extends BaseDBPage{
@@ -9,6 +9,7 @@ final class DeleteRoom extends BaseDBPage{
 
     const RESULT_SUCCESS = 1;
     const RESULT_FAIL = 2;
+    const RESULT_CANNOT_DELETE = 3;
 
     private int $state;
     private int $result;
@@ -17,6 +18,7 @@ final class DeleteRoom extends BaseDBPage{
     {
         parent::__construct();
         $this->title = "Room delete";
+        $this->loggedUser = $_SESSION["userName"];
     }
 
     protected function setUp(): void
@@ -37,9 +39,12 @@ final class DeleteRoom extends BaseDBPage{
         if ($this->state === self::STATE_DELETE_REQUESTED) {
             $roomId = filter_input(INPUT_POST, "room_id", FILTER_VALIDATE_INT);
             if ($roomId){
-                if (RoomModel::deleteById($roomId)) {
+                if (RoomModel::deleteById($roomId) == 1) {
                     $this->redirect(self::RESULT_SUCCESS);
-                } else {
+                }
+                if (RoomModel::deleteById($roomId) == 3) {
+                    $this->redirect(self::RESULT_CANNOT_DELETE);
+                }else {
                     $this->redirect(self::RESULT_FAIL);
                 }
             } else {
@@ -54,7 +59,11 @@ final class DeleteRoom extends BaseDBPage{
             if ($this->result === self::RESULT_SUCCESS) {
                 return $this->m->render("reportSuccess", ["data"=>"Room deleted successfully", "where"=>"room list"]);
             } else {
-                return $this->m->render("reportFail", ["data"=>"Room deletion failed. Please contact adiministrator or try again later.", "where"=>"room list"]);
+                if ($this->result === self::RESULT_CANNOT_DELETE) {
+                    return $this->m->render("reportFail", ["data"=>"You can not delete a room with employee inside. Please remove employee before removing this room.", "where"=>"room list"]);
+                }else {
+                    return $this->m->render("reportFail", ["data"=>"Room deletion failed. Please contact adiministrator or try again later.", "where"=>"room list"]);
+                }
             }
         }
         return "";
@@ -70,6 +79,10 @@ final class DeleteRoom extends BaseDBPage{
         } elseif ($result === self::RESULT_FAIL) {
             $this->state = self::STATE_REPORT_RESULT;
             $this->result = self::RESULT_FAIL;
+            return;
+        } elseif ($result === self::RESULT_CANNOT_DELETE) {
+            $this->state = self::STATE_REPORT_RESULT;
+            $this->result = self::RESULT_CANNOT_DELETE;
             return;
         }
 

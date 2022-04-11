@@ -68,7 +68,7 @@ class RoomModel
         return $stmt;
     }
 
-    public static function deleteById(int $room_id) : bool
+    public static function deleteById(int $room_id) : int
     {
         $canDelete = true;
 
@@ -97,13 +97,8 @@ class RoomModel
 
             return $stmt->execute();
         }else {
-            return false;
+            return 3;
         }
-    }
-
-    public function delete() : bool
-    {
-        return self::deleteById($this->room_id);
     }
 
     public static function getFromPost() : self {

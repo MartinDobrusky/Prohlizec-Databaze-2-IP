@@ -31,8 +31,12 @@
         <tr><td>    <form action="../room/create.php" method="post">
             <input type="submit" value="Create" class="btn btn-primary">
         </form></td>{{/admin}}<td></td><td></td>
-        <td style="text-align: right; padding-right: 50px">    <form action="../index.php" method="post">
+        <td style="text-align: right; padding-right: 50px">
+            <form action="../index.php" method="post">
             <input type="submit" value="Zpět na výběr" class="btn btn-primary">
         </form></td></tr>
     </tfoot>
 </table>
+<form action="../login/logOut.php" method="post">
+    <input type="submit" value="Odhlásit se" class="btn btn-danger">
+</form>

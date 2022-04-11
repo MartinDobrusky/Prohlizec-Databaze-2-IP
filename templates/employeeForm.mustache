@@ -15,8 +15,8 @@
     </div>
     <div class="my-2">
         <label for="wage">Wage</label>
-        <input id="wage" name="wage" class="form-control" type="text" value="{{employee.wage}}" required/>
-        {{#errors.no}}<div class="form-text text-warning">{{errors.no}}</div>{{/errors.no}}
+        <input id="wage" name="wage" class="form-control" type="number" value="{{employee.wage}}" min="0" required/>
+        {{#errors.wage}}<div class="form-text text-warning">{{errors.wage}}</div>{{/errors.wage}}
     </div>
 
     <label for="room">Choose a room:</label>

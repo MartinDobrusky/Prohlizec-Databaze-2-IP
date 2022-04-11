@@ -195,11 +195,6 @@ class EmployeeModel
         return $stmt->execute();
     }
 
-    public function delete() : bool
-    {
-        return self::deleteById($this->employee_id);
-    }
-
     public static function getFromPost() : self {
         $employeeObj = new EmployeeModel();
 

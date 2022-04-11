@@ -7,6 +7,11 @@ final class Page extends BaseDBPage{
     {
         parent::__construct();
         $this->title = "Prohlížeč databáze";
+        if (empty($_SESSION['loggedIn'])) {
+            $_SESSION["userName"] = "---";
+            $_SESSION['loggedIn'] = null;
+        }
+        $this->loggedUser = $_SESSION["userName"];
     }
 
     protected function body(): string

@@ -7,6 +7,7 @@ final class Page extends BaseDBPage{
     {
         parent::__construct();
         $this->title = "Změna hesla";
+        $this->loggedUser = $_SESSION["userName"];
     }
 
     protected function body(): string

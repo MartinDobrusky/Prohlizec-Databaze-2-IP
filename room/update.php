@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once "../_includes/bootstrap.inc.php";
 
 final class Page extends BaseDBPage{
@@ -19,6 +19,7 @@ final class Page extends BaseDBPage{
     {
         parent::__construct();
         $this->title = "Room update";
+        $this->loggedUser = $_SESSION["userName"];
     }
 
     protected function setUp(): void
@@ -64,19 +65,25 @@ final class Page extends BaseDBPage{
 
 
     protected function body(): string {
-        if ($this->state === self::STATE_FORM_REQUESTED) {
-            return $this->m->render("roomForm", [
-                "room"=>$this->room,
-                "errors"=>$this->room->getValidationErrors(),
-                "update"=>true
-            ]);
-        } elseif ($this->state === self::STATE_REPORT_RESULT) {
-            if ($this->result === self::RESULT_SUCCESS) {
-                return $this->m->render("reportSuccess", ["data"=>"Room update successfully", "where"=>"room list"]);
-            } else {
-                return $this->m->render("reportFail", ["data"=>"Room update failed. Please contact adiministrator or try again later.", "where"=>"room list"]);
-            }
+        if ($_SESSION["loggedIn"] == true) {
+            if ($this->state === self::STATE_FORM_REQUESTED) {
+                return $this->m->render("roomForm", [
+                    "room"=>$this->room,
+                    "errors"=>$this->room->getValidationErrors(),
+                    "update"=>true
+                ]);
+            } elseif ($this->state === self::STATE_REPORT_RESULT) {
+                if ($this->result === self::RESULT_SUCCESS) {
+                    return $this->m->render("reportSuccess", ["data"=>"Room update successfully", "where"=>"room list"]);
+                } else {
+                    return $this->m->render("reportFail", ["data"=>"Room update failed. Please contact adiministrator or try again later.", "where"=>"room list"]);
+                }
 
+            }
+        }else {
+            return $this->m->render(
+                "login"
+            );
         }
     }
 
